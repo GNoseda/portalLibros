@@ -1,0 +1,12 @@
+<%= form_with(model: book, url: user_status_path, remote: true, id: "reserveForm") do |form| %>
+  
+  <div class="field">
+    <%= form.label :book %>
+    <%= select("book", "id", @book_options, {:include_blank => 'Select a book'}, id: "reserveSelect") %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit "Reserve"%>
+  </div>
+<% end %>

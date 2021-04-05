@@ -1,11 +1,11 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[ show edit update destroy status status0]
+  before_action :set_book, only: %i[ show edit update destroy status status0 drop loose]
   before_action :authenticate_user!
 
 
   # GET /books or /books.json
   def index
-    @books = Book.all    
+    @books = Book.where.not(status: 2)    
   end
 
   # GET /books/1 or /books/1.json
@@ -63,13 +63,12 @@ class BooksController < ApplicationController
     end
   end
 
-  def status0
-    
+  def drop
     respond_to do |format|
       if @book.update(user: nil, status: 0)
         @books = Book.all
-        format.js { render nothing: true, notice: "Book was successfully reserverd." }
-        format.html { redirect_to @book, notice: "Book was successfully updated." }
+        format.js { render nothing: true, notice: "Book was successfully dropped." }
+        format.html { redirect_to @book, notice: "Book was successfully dropped." }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -77,6 +76,7 @@ class BooksController < ApplicationController
       end
     end
   end
+
 
   # DELETE /books/1 or /books/1.json
   def destroy

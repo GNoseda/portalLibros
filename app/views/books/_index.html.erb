@@ -2,8 +2,12 @@
   <tr>
     <td><%= book.title %></td>
     <td><%= book.status %></td>
-    <td><%= link_to 'Show', book %></td>
-    <td><%= link_to 'Edit', edit_book_path(book) %></td>
-    <td><%= link_to 'Reserve', status_path(book), method: :post, remote: true %></td>
+    <td>
+      <% if book.status == 'abled' %>
+        <%= link_to 'Reserve', status_path(book), method: :post, remote: true %>
+      <% else %>
+        <%= link_to 'Drop', drop_path(book), method: :post, remote: true %>
+      <% end %>
+    </td>
   </tr>
 <% end %>

@@ -1,21 +1,57 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Books</h1>
+<h1>My Books</h1>
+<div id="message"></div>
+<br>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col-6" id="reserveBook">
+    <h4>Reserve a book</h4>
+    <%= render 'form', book: @book %>
+  </div>
+  <br>
+  <div class="col-6" id="buyBook">
+    <h4>Buy a book</h4>
+    <%= render 'buyform', book: @book %>
+  </div>
+  <br>
+</div>
+<br>
+<div class="row">
+  <div class="container col-6">
+    <h5>Reservations</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Book Title</th>
+          <th>Status</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
 
-  <tbody id='bookList'>
-    <%= render 'index', books: @books %>
-  </tbody>
-</table>
+      <tbody id='bookList'>
+        <%= render 'index', books: @books %>
+      </tbody>
+    </table>
+  </div>
+  <div class="container col-6">
+    <h5>Buys</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Status</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody id='buyList'>
+        <%= render 'buy', books: @buy_books %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br>
 
-<%= link_to 'New Book', new_book_path %>
+<%= link_to 'Book menu', root_path %>

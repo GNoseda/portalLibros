@@ -1,0 +1,16 @@
+<%= form_with(model: book, url: buy_path, remote: true, id: "buyForm") do |form| %>
+  
+  <div class="field">
+    <%= form.label :book %>
+    <%= select("buy", "id", @buy_options, {:include_blank => 'Select a book'}, id: "buySelect") %>
+  </div>
+
+  <div class="row">
+    <div class="actions col-6">
+      <%= form.submit "Buy!"%>
+    </div>
+    <span id="payMessage"></span>
+    <span id="timer"></span>
+  </div>
+  
+<% end %>
