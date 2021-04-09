@@ -1,0 +1,9 @@
+$('#bookList').html('<%=j render "index" %>')
+$('#buyList').html('<%=j render "buy" %>')
+$('#message').html('<span><%= @message%></span>')
+
+$('#reserveForm').remove()
+$('#buyForm').remove()
+
+$('#reserveBook').html('<%=j render "form", book: @bookExample %>')
+$('#buyBook').html('<%=j render "buyform", book: @bookExample %>')

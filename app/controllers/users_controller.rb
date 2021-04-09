@@ -17,6 +17,11 @@ class UsersController < ApplicationController
 
   def buy
     @book = Book.find(params[:buy][:id])
+    respond(current_user,@book.status,"#{@book.title} waiting for confirmation.")
+  end
+
+  def confirm
+    @book = Book.find(params[:buy_id])
     respond(current_user,2,"#{@book.title} was successfully bought.")
   end
 

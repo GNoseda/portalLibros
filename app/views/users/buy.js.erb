@@ -1,9 +1,31 @@
-$('#bookList').html('<%=j render "index" %>')
-$('#buyList').html('<%=j render "buy" %>')
-$('#message').html('<span><%= @message%></span>')
+$('#confirm').html('<%=j render "confirmbutton"%>')
+$('#payMessage').text('Are you sure?')
+total_time = 5
 
-$('#reserveForm').remove()
-$('#buyForm').remove()
+$('#timer').text(setTime())
 
-$('#reserveBook').html('<%=j render "form", book: @bookExample %>')
-$('#buyBook').html('<%=j render "buyform", book: @bookExample %>')
+interval = setInterval(getTimeLeft, 1000);
+
+function getTimeLeft(){
+    total_time--
+    setTime()
+    if(total_time == 0){
+        $('#payMessage').text("time's up, click on 'buy!' to try again")
+        $('#confirmButton').attr("disabled",true)
+        clearInterval(interval)
+    }
+}
+
+function setTime(){
+    mins = Math.floor(total_time/60)
+    secs = total_time - (mins * 60)
+    $('#timer').text(textTime(mins) + ":" + textTime(secs))
+}
+
+function textTime(value){
+    if (value < 10){
+        value = "0" + value
+    }
+    return value
+}
+

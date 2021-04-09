@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   put 'users/:id', to: "users#status0", as: "status0"
   post 'users/:id', to: "users#user_status", as: "user_status"
   post 'users/:id/buy', to: "users#buy", as: "buy"
+  post 'users/:id/confirm', to: "users#confirm", as: "confirm"
   post 'users/:id/loose', to: "users#loose", as: "loose"
   get 'users/:id', to: "users#profile", as: "user_reservations"
   
